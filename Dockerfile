@@ -2,7 +2,7 @@
 # STEP 1 build executable binary
 ############################
 
-FROM golang:1.12 AS builder
+FROM golang:1.14.2 AS builder
 
 WORKDIR /go/src/app
 COPY . /go/src/app
@@ -14,7 +14,7 @@ RUN go build -o /go/bin/app
 # STEP 2 build the image using a stale version
 ############################
 
-FROM golang:1.12
+FROM golang:1.14.2
 
 # Copy our static executable
 COPY --from=builder /go/bin/app /app
